@@ -5,8 +5,10 @@ const postSchema=new mongoose.Schema({
     comments:{type:String},
     author:{type:String,required:true},
     date:{type:Date,default:Date.now, required:true},
-    image:{type:File,required:true},
-    category:{type:String,required:true}
+    image:{type:String,required:true},
+    category:{type:String,required:true},
+    tags:{type:Array, required:true}
 }
 )
-module.exports=mongoose.model("Post",postSchema)
+
+module.exports=mongoose.model("Post", postSchema)
