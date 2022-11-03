@@ -4,11 +4,12 @@ const postSchema=new mongoose.Schema({
     body:{type:String,required:true},
     comments:{type:String},
     author:{type:String,required:true},
-    date:{type:Date,default:Date.now, required:true},
     image:{type:String,required:true},
     category:{type:String,required:true},
-    tags:{type:Array, required:true}
-}
+    tags:{type:Array, required:true},
+    
+},
+{timestamps:true}
 )
 
 module.exports=mongoose.model("Post", postSchema)
