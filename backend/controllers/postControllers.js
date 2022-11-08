@@ -24,6 +24,7 @@ const addPost= async(req,res)=>{
     }
  }
 
+ 
  const getPosts=async(req,res)=>{
     try{
         const allPosts= await Post.find()

@@ -66,6 +66,7 @@ const Categories=()=>{
                 <MainHead>Most Nutritious and healthy recipes</MainHead>
                 <Para>We cover the most recent health studies to help you make informed diet decisions, new information about upcoming kitchen products and unusual news about crazy food combinations that you can find at restaurants around the country. </Para>
                 <Para>Paul Mulamwa</Para>
+                
                 </InfoContainer>
                 </Category>
             </Container>

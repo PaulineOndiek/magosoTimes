@@ -9,7 +9,7 @@ const HomeContainer=styled.div`
 backround:#F9F9F9;
 `
 const Home=()=>{
-    const [news, setNews]=useState([])
+    const [news, setNews]=useState(null)
 
 // const url="http://localhost:8000/api/posts"
 // const option={
@@ -23,20 +23,24 @@ const Home=()=>{
      useEffect(()=>{
 fetch("http://localhost:8001/api/posts")
     .then(res=>{
-        
-     console.log(res)
-    // set
+        return res.json()
+
     })
-    
+    .then(data=>{
+        // console.log(data)
+        setNews(data)
+    })
     // .catch(err=>console.log(err))
 
     }
     ,[])
     return(
         <HomeContainer>
+
+            {console.log(news)}
       <Nav/>
         <Logo/>
-        <MainItem/>
+        {/* <MainItem news={news}/> */}
         <Categories/>
         <Footer/>
         </HomeContainer>

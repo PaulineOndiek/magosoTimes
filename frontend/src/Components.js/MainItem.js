@@ -36,7 +36,13 @@ const MainItem=()=>{
                 <Para>Watch as Biles, whose last all-around defeat came in 2013, can become the first woman to win back-to-back Olympic all-around titles since 1968. She can also become the first U.S. woman in any sport to win five golds at a single Games. </Para>
                 <Para>Prisca Mwendwa</Para>
                 </InfoContainer>
-                
+                {/* {
+                    news.map(item=>{
+                        return(
+                            <Para>{item.title}</Para>
+                        )
+                    })
+                } */}
             </Container>
         </MainContainer>
         </>

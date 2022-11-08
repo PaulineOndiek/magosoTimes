@@ -10,16 +10,13 @@ const NavUl=styled.ul`
 display:flex;
 justify-content:space-between;
 list-style-type:none;
-
 `
 const NavList=styled.li`
 padding:.8em 2em;
-text-decoration:none;
 background:white;
 border-radius:5px;
 &:hover, &:active{
 background:#2DAAFC;
-color:white;
 cursor:pointer;}`
 
 
@@ -31,6 +28,7 @@ const Nav=()=>{
                 <NavList><Link to="/">Home</Link></NavList>
                 <NavList><Link to="/Register">Register/Signup</Link></NavList>
                 <NavList><Link to="/Login">Login/Signin </Link></NavList>
+                <NavList><Link to="/AddBlog">Add Blog</Link></NavList>
 
             </NavUl>
 

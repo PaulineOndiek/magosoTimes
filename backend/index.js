@@ -1,8 +1,9 @@
-const postRoutes=require("./routes/post")
-const express=require("express")
 const dotenv=require("dotenv")
-const mongoose=require("mongoose")
+const express=require("express")
 const cors=require("cors")
+const mongoose=require("mongoose")
+const postRoutes=require("./routes/post")
+const post=require("./models/post")
 dotenv.config()
 
 const app=express()
@@ -25,8 +26,4 @@ app.get("/",(req,res)=>{
 app.use(express.json())
 app.use("/api/posts", postRoutes)
 
-
 // app.use("/api", postRoutes)
-
-
-
