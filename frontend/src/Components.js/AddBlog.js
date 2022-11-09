@@ -1,6 +1,4 @@
 import styled from "styled-components"
-// import { CKEditor } from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
@@ -18,7 +16,6 @@ display:flex;
 flex-direction:column;
 align-items:center;
 gap:1em;
-
 `
 const Input=styled.input`
 outline:none;
@@ -45,10 +42,21 @@ color:white;
 cursor:pointer;
 width:75%;
 `
-// const EditorDiv=styled.div``
+const Body=styled.div`
+width:75%;
+`
 const Para=styled.p``
 
 const AddBlog=()=>{
+
+  // const handleEditorChange=(e)=>{
+  //   console.log(e.target.getContent())
+  // }
+
+  const editorRef = useRef(null);
+  const imageRef=useRef(null)
+
+  
   const [upload, setUpload]=useState({
     title:"",
     body:"",
@@ -59,7 +67,7 @@ const AddBlog=()=>{
     tags:[]
   })
   const [error, setError]=useState(null)
-  const editorRef = useRef(null);
+  
 
   const emptyFields = []
 
@@ -92,6 +100,13 @@ const CLOUDINARY_UPLOAD_PRESET = 'qbxjeslj';
     
 // });
 }
+
+const log = () => {
+  if (editorRef.current) {
+    console.log(editorRef.current.getContent());
+  }
+};
+
 const handleAddBlog=async ()=>{
 try{
 if(upload.title===""|| upload.body===""|| upload.author===""|| upload.comments===""|| upload.image===""|| upload.category===""|| upload.tags===[]){
@@ -135,10 +150,12 @@ if(response.ok){
     body:"",
     author:"",
     comments:"",
-    // image:"",
+    image:"",
     category:"",
     tags:[]
   })
+  imageRef.current.value=""
+
 }
 } 
 
@@ -147,11 +164,10 @@ catch(err){
 
 }
 }
-const log = () => {
-  if (editorRef.current) {
-    console.log(editorRef.current.getContent());
-  }
-};
+
+// const editorRef = useRef(null);
+
+
     return(
         <>
         <Nav/>
@@ -161,20 +177,21 @@ const log = () => {
                 {error && <Para>{error}</Para>}
                     <Input className={emptyFields.includes("title") ? "error":""} value={upload.title}type="text" placeholder="Title" onChange={(e)=>setUpload(prev=>({...prev,title:e.target.value}))}/>
 {/* Adding a text editor from tinymce*/}     
-
-  {/* return ( */}
-    <>
-      <Editor
-        tinymceScriptSrc={process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'}
+{/* <Input className={emptyFields.includes("title") ? "error":""} value={upload.body} onChange={(e)=>setUpload(prev=>({...prev,body:e.target.value}))}/> */}
+    
+  <Editor onEditorChange={()=>setUpload(prev=>({...prev,body:editorRef.current.getContent()}))}
+   ref={editorRef}
+        apiKey='9cxz2iq08r8pqej8hzbsv9xyxv6nncuiydau2npkqwo26tbd'
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue='<p>This is the initial content of the editor.</p>'
+        initialValue=""value={upload.body}
+
         init={{
           height: 500,
           menubar: false,
           plugins: [
-            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'preview', 'help', 'wordcount'
+            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
           ],
           toolbar: 'undo redo | blocks | ' +
             'bold italic forecolor | alignleft aligncenter ' +
@@ -183,19 +200,22 @@ const log = () => {
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button onClick={log}>Log editor content</button>
-    </>
- 
-  
-                  
+     
+      {/* <button onClick={log}>Log editor content</button> */}
+    {/* </>
+  );
+}
+JSX
+copy icon */}
+{/* 
                     <TextArea className={emptyFields.includes("body") ? "error":""} value={upload.body}placeholder="Body" onChange={(e)=>setUpload(prev=>({...prev,body:e.target.value}))}></TextArea> 
-                
+                 */}
                     <Input className={emptyFields.includes("author") ? "error":""} value={upload.author} type="text" placeholder="Author" onChange={(e)=>setUpload(prev=>({...prev,author:e.target.value}))}/>
 
                     <TextArea className={emptyFields.includes("comments") ? "error":""} value={upload.comments} placeholder="Comments" onChange={(e)=>setUpload(prev=>({...prev,comments:e.target.value}))}></TextArea>
                    
 
-                    <Input className={emptyFields.includes("image") ? "error":""} type="file" onChange={(e)=>handleImageUpload(e)} />
+                    <Input className={emptyFields.includes("image") ? "error":""} type="file" ref={imageRef} onChange={(e)=>handleImageUpload(e)} />
                    
 
                     <Input className={emptyFields.includes("category") ? "error":""} value={upload.category} type="text" placeholder="Category" onChange={(e)=>setUpload(prev=>({...prev,category:e.target.value}))}/>
