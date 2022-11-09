@@ -13,7 +13,7 @@ const ImageContainer=styled.div`
 const InfoContainer=styled.div`
 `
 const Image=styled.img`
-width:100%;
+width:80%;
 height:100%;
 border-radius:10px;
 box-shadow:0 0 2px grey;
@@ -21,7 +21,7 @@ box-shadow:0 0 2px grey;
 const Para=styled.p``
 const MainHead=styled.h2`
 font-size:3rem;`
-const MainItem=()=>{
+const MainItem=({news})=>{
     return(
         <> 
         <MainContainer>
@@ -36,13 +36,14 @@ const MainItem=()=>{
                 <Para>Watch as Biles, whose last all-around defeat came in 2013, can become the first woman to win back-to-back Olympic all-around titles since 1968. She can also become the first U.S. woman in any sport to win five golds at a single Games. </Para>
                 <Para>Prisca Mwendwa</Para>
                 </InfoContainer>
-                {/* {
-                    news.map(item=>{
+                {
+                    news && news.map(item=>{
                         return(
-                            <Para>{item.title}</Para>
+                            null
+                            // <Para>{item.title}</Para>
                         )
                     })
-                } */}
+                }
             </Container>
         </MainContainer>
         </>

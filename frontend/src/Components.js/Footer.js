@@ -6,7 +6,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const FooterContainer=styled.div`
-background:#2DAAFC;`
+background:#7D41E1;
+margin-top:2em;`
 const Container=styled.div`
 margin:0 auto;
 width:80%;

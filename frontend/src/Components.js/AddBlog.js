@@ -1,4 +1,10 @@
 import styled from "styled-components"
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React, { useRef } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
+
+import '../index.css';
 import { useState } from "react"
 import Nav from "./Nav"
 import Footer from "./Footer"
@@ -39,6 +45,7 @@ color:white;
 cursor:pointer;
 width:75%;
 `
+// const EditorDiv=styled.div``
 const Para=styled.p``
 
 const AddBlog=()=>{
@@ -52,6 +59,9 @@ const AddBlog=()=>{
     tags:[]
   })
   const [error, setError]=useState(null)
+  const editorRef = useRef(null);
+
+  const emptyFields = []
 
     const handleImageUpload=(e)=>{
       const file = e.target.files[0];
@@ -84,10 +94,32 @@ const CLOUDINARY_UPLOAD_PRESET = 'qbxjeslj';
 }
 const handleAddBlog=async ()=>{
 try{
-if(upload.title==""|| upload.body==""|| upload.author==""|| upload.comments==""|| upload.image==""|| upload.category==""|| upload.tags==[""]){
-  setError({error:"Please fill all the required fields"})
+if(upload.title===""|| upload.body===""|| upload.author===""|| upload.comments===""|| upload.image===""|| upload.category===""|| upload.tags===[]){
+  setError("Please fill all the required fields")
 }
- 
+
+if(upload.title ===""){
+  emptyFields.push("title")
+}
+
+if(upload.author===""){
+  emptyFields.push("author")
+}
+if (upload.body===""){
+  emptyFields.push("body")
+}
+if (upload.comments===""){
+  emptyFields.push("comments")
+}
+if (upload.image===""){
+  emptyFields.push("image")
+}
+if(upload.tags===""){
+  emptyFields.push("tags")
+}
+ if (upload.category===""){
+  emptyFields.push("category")
+ }
 else{
 const response=await fetch("http://localhost:8001/api/posts/new", {
   method:"POST",
@@ -96,50 +128,80 @@ const response=await fetch("http://localhost:8001/api/posts/new", {
 
 })
 const responseJson=await response.json()
-// console.log(responseJson)
-// console.log(upload)
-// setUpload({
-// title:"",
-// body:"",
-// author:"",
-// comments:"",
-// // image:"",
-// category:"",
-// tags:[]
-// })
+
+if(response.ok){
+  setUpload({
+    title:"",
+    body:"",
+    author:"",
+    comments:"",
+    // image:"",
+    category:"",
+    tags:[]
+  })
+}
 } 
 
 }
-catch(error){
+catch(err){
 
 }
 }
-
+const log = () => {
+  if (editorRef.current) {
+    console.log(editorRef.current.getContent());
+  }
+};
     return(
         <>
         <Nav/>
         <BlogContainer>
             <Container>
                 <BlogInput>
-                <Para>{error}</Para>
-                    <Input className={upload.title===""?"error":""} value={upload.title}type="text" placeholder="Title" onChange={(e)=>setUpload(prev=>({...prev,title:e.target.value}))}/>
+                {error && <Para>{error}</Para>}
+                    <Input className={emptyFields.includes("title") ? "error":""} value={upload.title}type="text" placeholder="Title" onChange={(e)=>setUpload(prev=>({...prev,title:e.target.value}))}/>
+{/* Adding a text editor from tinymce*/}     
+
+  {/* return ( */}
+    <>
+      <Editor
+        tinymceScriptSrc={process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'}
+        onInit={(evt, editor) => editorRef.current = editor}
+        initialValue='<p>This is the initial content of the editor.</p>'
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'preview', 'help', 'wordcount'
+          ],
+          toolbar: 'undo redo | blocks | ' +
+            'bold italic forecolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        }}
+      />
+      <button onClick={log}>Log editor content</button>
+    </>
+ 
+  
+                  
+                    <TextArea className={emptyFields.includes("body") ? "error":""} value={upload.body}placeholder="Body" onChange={(e)=>setUpload(prev=>({...prev,body:e.target.value}))}></TextArea> 
+                
+                    <Input className={emptyFields.includes("author") ? "error":""} value={upload.author} type="text" placeholder="Author" onChange={(e)=>setUpload(prev=>({...prev,author:e.target.value}))}/>
+
+                    <TextArea className={emptyFields.includes("comments") ? "error":""} value={upload.comments} placeholder="Comments" onChange={(e)=>setUpload(prev=>({...prev,comments:e.target.value}))}></TextArea>
+                   
+
+                    <Input className={emptyFields.includes("image") ? "error":""} type="file" onChange={(e)=>handleImageUpload(e)} />
+                   
+
+                    <Input className={emptyFields.includes("category") ? "error":""} value={upload.category} type="text" placeholder="Category" onChange={(e)=>setUpload(prev=>({...prev,category:e.target.value}))}/>
           
-                    <TextArea className={upload.body===""? "error":""} value={upload.body}placeholder="Body" onChange={(e)=>setUpload(prev=>({...prev,body:e.target.value}))}></TextArea>
-                
-                    <Input className={upload.author===""?"error":""} value={upload.author} type="text" placeholder="Author" onChange={(e)=>setUpload(prev=>({...prev,author:e.target.value}))}/>
-                   
 
-                    <TextArea className={upload.comments===""?"error":""} value={upload.comments} placeholder="Comments" onChange={(e)=>setUpload(prev=>({...prev,comments:e.target.value}))}></TextArea>
-                   
-
-                    <Input className={upload.image===""?"error":""} type="file" onChange={(e)=>handleImageUpload(e)} />
-                   
-
-                    <Input className={upload.category===""?"error":""} value={upload.category} type="text" placeholder="Category" onChange={(e)=>setUpload(prev=>({...prev,category:e.target.value}))}/>
-                
-
-
-                    <Input className={upload.tags===""?"error":""} value={upload.tags} type="text" placeholder="Tags" onChange={(e)=>setUpload(prev=>({...prev,tags:e.target.value.split(",")}))}/>
+                    <Input className={emptyFields.includes("tags")? "error":""} value={upload.tags} type="text" placeholder="Tags" onChange={(e)=>setUpload(prev=>({...prev,tags:e.target.value.split(",")}))}/>
                    
                     <Button onClick={handleAddBlog}>Add Blog</Button>
                     </BlogInput>
