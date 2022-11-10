@@ -21,7 +21,9 @@ Link{
 }
 
 .error{
-border:1px solid red;
-background:red;
+border:1px solid red !important;
 
+}
+.errors{
+  border-bottom: 2px solid red !important ;
 }

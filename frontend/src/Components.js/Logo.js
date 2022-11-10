@@ -77,7 +77,7 @@ const Logo=()=>{
                 <LogoLi>Technology</LogoLi>
                 <LogoLi>Sports</LogoLi>
                 <LogoLi>Entertainment</LogoLi>
-                <LogoLi>Food</LogoLi>
+                <LogoLi>Social</LogoLi>
                 <LogoLi>Fitness</LogoLi>
                 <LogoLi>Fashion</LogoLi>
             </LogoUl>

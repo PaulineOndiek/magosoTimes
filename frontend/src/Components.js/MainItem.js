@@ -31,12 +31,15 @@ const MainItem=({news})=>{
                 {news && news.map(newsBlog=>{
                     return(
                         <>
+
                         <ImageContainer>
+                        
                         <Image src={newsBlog.image} />
                          </ImageContainer>
                          <InfoContainer>
                          <Para>{newsBlog.category}</Para>
                          <MainHead>{newsBlog.description}</MainHead>
+                         {/* dangerouslysetInnerHTML*/}
                          <Para dangerouslySetInnerHTML={{__html:newsBlog.body}} />
                          <Para>{newsBlog.author}</Para>
                          </InfoContainer>

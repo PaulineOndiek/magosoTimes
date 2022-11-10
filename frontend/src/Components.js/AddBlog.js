@@ -45,18 +45,15 @@ width:75%;
 const Body=styled.div`
 width:75%;
 `
-const Para=styled.p``
+const Para=styled.p`
+color:red;
+`
 
 const AddBlog=()=>{
-
-  // const handleEditorChange=(e)=>{
-  //   console.log(e.target.getContent())
-  // }
 
   const editorRef = useRef(null);
   const imageRef=useRef(null)
 
-  
   const [upload, setUpload]=useState({
     title:"",
     body:"",
@@ -64,13 +61,13 @@ const AddBlog=()=>{
     comments:"",
     image:"",
     category:"",
-    tags:[]
+    tags:""
   })
+
   const [error, setError]=useState(null)
   
-
-  const emptyFields = []
-
+  const [emptyFields, setEmptyFields]= useState([])
+// const emptyFields=[]
     const handleImageUpload=(e)=>{
       const file = e.target.files[0];
   const formData = new FormData();
@@ -109,8 +106,8 @@ const log = () => {
 
 const handleAddBlog=async ()=>{
 try{
-if(upload.title===""|| upload.body===""|| upload.author===""|| upload.comments===""|| upload.image===""|| upload.category===""|| upload.tags===[]){
-  setError("Please fill all the required fields")
+if(upload.title===""|| upload.body===""|| upload.author===""|| upload.comments===""|| upload.image===""|| upload.category===""|| upload.tags===""){
+  setError("Please fill out all the required fields")
 }
 
 if(upload.title ===""){
@@ -180,11 +177,12 @@ catch(err){
 {/* <Input className={emptyFields.includes("title") ? "error":""} value={upload.body} onChange={(e)=>setUpload(prev=>({...prev,body:e.target.value}))}/> */}
     
     {/* onEditorChange in tinymce */}
-  <Editor onEditorChange={()=>setUpload(prev=>({...prev,body:editorRef.current.getContent()}))}
+  <Editor  className={emptyFields.includes("body") ? "error": ""}onEditorChange={()=>setUpload(prev=>({...prev,body:editorRef.current.getContent()}))}
    ref={editorRef}
         apiKey='9cxz2iq08r8pqej8hzbsv9xyxv6nncuiydau2npkqwo26tbd'
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue=""value={upload.body}
+        initialValue=""
+        value={upload.body}
 
         init={{
           height: 500,
@@ -222,7 +220,11 @@ copy icon */}
                     <Input className={emptyFields.includes("category") ? "error":""} value={upload.category} type="text" placeholder="Category" onChange={(e)=>setUpload(prev=>({...prev,category:e.target.value}))}/>
           
 
-                    <Input className={emptyFields.includes("tags")? "error":""} value={upload.tags} type="text" placeholder="Tags" onChange={(e)=>setUpload(prev=>({...prev,tags:e.target.value.split(",")}))}/>
+                    <Input className={emptyFields.includes("tags")? "error":""} value={upload.tags} type="text" placeholder="Tags" onChange={(e)=>{
+                  const tags=e.target.value.split(",")
+                  setUpload(prev=>({...prev,tags}))
+                      // setUpload(prev=>({...prev,tags:e.target.value.split(",")}))
+                      }}/>
                    
                     <Button onClick={handleAddBlog}>Add Blog</Button>
                     </BlogInput>
