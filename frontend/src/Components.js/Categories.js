@@ -26,49 +26,58 @@ box-shadow:0 0 2px grey;
 `
 
 
-const Categories=()=>{
+const Categories=({news})=>{
     return(
         <>
         <CategoriesContainer>
             <Container>
-                <Category>
+
+                {news && news.map(newsData=>{
+                    return(
+                        <>
+                    <Category>
                  <ImageContainer>
-                <Image src={img1} />
+                <Image src={newsData.image} />
                 </ImageContainer>
                 <InfoContainer>
             
-                <Para>Entertainment</Para>
-                <MainHead>Get up to the minute entertainment news</MainHead>
-                <Para>Your source for entertainment news, celebrities, celeb news and celebrity gossip. Check out the hottest fashion, photos, movies and TV shows! </Para>
-                <Para>Prisca Mwendwa</Para>
-                </InfoContainer>
-                </Category>
-                <Category>
-                <ImageContainer>
-                <Image src={img2} />
-                </ImageContainer>
-                <InfoContainer>
-            
-                <Para>Fashion</Para>
-                <MainHead>Today's Fashion Trends</MainHead>
-                <Para>What you wear is how you present yourself to the world, especially today, when human contacts are so quick. Fashion is instant language... </Para>
-                <Para>Christine Achungo</Para>
+                <Para>{newsData.category}</Para>
+                <MainHead>{newsData.title}</MainHead>
+                <Para>{newsData.description}</Para>
+                <Para>{newsData.author}</Para>
                 </InfoContainer>
                 </Category>
 
                 <Category>
                 <ImageContainer>
-                <Image src={img3} />
+                <Image src={newsData.image} />
                 </ImageContainer>
                 <InfoContainer>
             
-                <Para>Food</Para>
-                <MainHead>Most Nutritious and healthy recipes</MainHead>
-                <Para>We cover the most recent health studies to help you make informed diet decisions, new information about upcoming kitchen products and unusual news about crazy food combinations that you can find at restaurants around the country. </Para>
-                <Para>Paul Mulamwa</Para>
-                
+                <Para>{newsData.category}</Para>
+                <MainHead>{newsData.title}</MainHead>
+                <Para>{newsData.description}</Para>
+                <Para>{newsData.author}</Para>
                 </InfoContainer>
                 </Category>
+
+                <Category>
+                <ImageContainer>
+                <Image src={newsData.image} />
+                </ImageContainer>
+                <InfoContainer>
+            
+                <Para>{newsData.category}</Para>
+                <MainHead>{newsData.title}</MainHead>
+                <Para>{newsData.description}</Para>
+                <Para>{newsData.author}</Para>
+                </InfoContainer>
+                </Category>
+                
+                </>
+                )
+                })}
+                
             </Container>
             </CategoriesContainer>
         </>

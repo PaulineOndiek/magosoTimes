@@ -179,6 +179,7 @@ catch(err){
 {/* Adding a text editor from tinymce*/}     
 {/* <Input className={emptyFields.includes("title") ? "error":""} value={upload.body} onChange={(e)=>setUpload(prev=>({...prev,body:e.target.value}))}/> */}
     
+    {/* onEditorChange in tinymce */}
   <Editor onEditorChange={()=>setUpload(prev=>({...prev,body:editorRef.current.getContent()}))}
    ref={editorRef}
         apiKey='9cxz2iq08r8pqej8hzbsv9xyxv6nncuiydau2npkqwo26tbd'

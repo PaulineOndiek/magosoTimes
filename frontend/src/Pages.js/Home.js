@@ -39,7 +39,7 @@ const Home = () => {
       <MainItem news={news} />
       {/* <MainItem/> */}
 
-      <Categories />
+      <Categories news={news} />
       <Footer />
     </HomeContainer>
   );

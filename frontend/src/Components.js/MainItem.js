@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import img1 from "../Images/sports.webp"
+// import img1 from "../Images/sports.webp"
 const MainContainer=styled.div`
 padding:2em 0;
 background:#F9F9F9;`
@@ -24,18 +24,29 @@ font-size:3rem;`
 const MainItem=({news})=>{
     return(
         <> 
+        
         <MainContainer>
             <Container>
-            <ImageContainer>
-                <Image src={img1} />
-                </ImageContainer>
-                <InfoContainer>
-            
-                <Para>Sports</Para>
-                <MainHead>Women's Relay Finals</MainHead>
-                <Para>Watch as Biles, whose last all-around defeat came in 2013, can become the first woman to win back-to-back Olympic all-around titles since 1968. She can also become the first U.S. woman in any sport to win five golds at a single Games. </Para>
-                <Para>Prisca Mwendwa</Para>
-                </InfoContainer>
+                
+                {news && news.map(newsBlog=>{
+                    return(
+                        <>
+                        <ImageContainer>
+                        <Image src={newsBlog.image} />
+                         </ImageContainer>
+                         <InfoContainer>
+                         <Para>{newsBlog.category}</Para>
+                         <MainHead>{newsBlog.description}</MainHead>
+                         <Para dangerouslySetInnerHTML={{__html:newsBlog.body}} />
+                         <Para>{newsBlog.author}</Para>
+                         </InfoContainer>
+                        
+                        </>
+                        
+                    )
+                })}
+ 
+               
      </Container>
         </MainContainer>
         </>
