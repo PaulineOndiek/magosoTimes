@@ -9,6 +9,8 @@ width:80%;
 display:flex;
 gap:2em;`
 const ImageContainer=styled.div`
+width:50%;
+
 `
 const InfoContainer=styled.div`
 `
@@ -27,29 +29,20 @@ const MainItem=({news})=>{
         
         <MainContainer>
             <Container>
-                
-                {news && news.map(newsBlog=>{
-                    return(
-                        <>
 
                         <ImageContainer>
                         
-                        <Image src={newsBlog.image} />
+                        <Image src={news && news[0].image}/>
                          </ImageContainer>
                          <InfoContainer>
-                         <Para>{newsBlog.category}</Para>
-                         <MainHead>{newsBlog.description}</MainHead>
+                         <MainHead>{news && news[0].category}</MainHead>
+                         <Para>{news && news[0].title}</Para>
+                        
                          {/* dangerouslysetInnerHTML*/}
-                         <Para dangerouslySetInnerHTML={{__html:newsBlog.body}} />
-                         <Para>{newsBlog.author}</Para>
+                         {/* <Para dangerouslySetInnerHTML={{}} /> */}
+                         <Para>{news && news[0].author}</Para>
                          </InfoContainer>
-                        
-                        </>
-                        
-                    )
-                })}
- 
-               
+       
      </Container>
         </MainContainer>
         </>

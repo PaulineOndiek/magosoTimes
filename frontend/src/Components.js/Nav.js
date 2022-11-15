@@ -17,7 +17,8 @@ background:white;
 border-radius:5px;
 &:hover, &:active{
 background:#2DAAFC;
-cursor:pointer;}`
+cursor:pointer;}
+`
 
 
 const Nav=()=>{

@@ -48,7 +48,7 @@ const Categories=({news})=>{
                 </InfoContainer>
                 </Category>
 
-                <Category>
+                {/* <Category>
                 <ImageContainer>
                 <Image src={newsData.image} />
                 </ImageContainer>
@@ -59,9 +59,9 @@ const Categories=({news})=>{
                 <Para>{newsData.description}</Para>
                 <Para>{newsData.author}</Para>
                 </InfoContainer>
-                </Category>
+                </Category> */}
 
-                <Category>
+                {/* <Category>
                 <ImageContainer>
                 <Image src={newsData.image} />
                 </ImageContainer>
@@ -72,7 +72,7 @@ const Categories=({news})=>{
                 <Para>{newsData.description}</Para>
                 <Para>{newsData.author}</Para>
                 </InfoContainer>
-                </Category>
+                </Category> */}
                 
                 </>
                 )

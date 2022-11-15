@@ -85,11 +85,13 @@ try{
 if (user.email===""){
     emptyUser.push("email")
 }
-if (user.reEnter===""){
-    emptyUser.push("reEnter")
-}
+
 if(user.password===""){
     emptyUser.push("password")
+}
+
+if (user.reEnter===""){
+    emptyUser.push("reEnter")
 }
 else{
     console.log("error message")
@@ -112,11 +114,12 @@ console.log("error")
                 <RegisterInfo>
                 <RegisterInput>
                     <Para>Create Account</Para>
-                    {error && <Para>{error}</Para>}
+                    {error && <Para style={{color:"red"}} >{error}</Para>}
                     <Input className={emptyUser.includes("userName") ? "errors" :""}  value={user.userName} type="text" placeholder="Your UserName" onChange={(e)=>setUser(prev=>({...prev,userName:e.target.value}))} />
                     <Input className={emptyUser.includes("email") ? "errors" : ""}  value={user.email} type="email address" placeholder="Your Email" onChange={(e)=>setUser(prev=>({...prev,email:e.target.value}))} />
-                    <Input  className={emptyUser.includes("reEnter") ? "errors":""} value={user.reEnter} type="pasword" placeholder="Re-enter your password"/>
                     <Input className={emptyUser.includes("password") ? "errors" :""}  value={user.password} type="password" placeholder="Your Password" onChange={(e)=>setUser(prev=>({...prev,password:e.target.value}))}/>
+                    <Input  className={emptyUser.includes("reEnter") ? "errors":""} value={user.reEnter} type="pasword" placeholder="Re-enter your password" onChange={(e)=>setUser(prev=>({...prev, reEnter:e.target.value}))} />
+ 
                     <Button onClick={handleAddUser}>Create Account</Button>
                 </RegisterInput>
                 

@@ -58,7 +58,7 @@ const AddBlog=()=>{
     title:"",
     body:"",
     author:"",
-    comments:"",
+    description:"",
     image:"",
     category:"",
     tags:""
@@ -106,7 +106,7 @@ const log = () => {
 
 const handleAddBlog=async ()=>{
 try{
-if(upload.title===""|| upload.body===""|| upload.author===""|| upload.comments===""|| upload.image===""|| upload.category===""|| upload.tags===""){
+if(upload.title===""|| upload.body===""|| upload.author===""|| upload.description===""|| upload.image===""|| upload.category===""|| upload.tags===""){
   setError("Please fill out all the required fields")
 }
 
@@ -120,8 +120,8 @@ if(upload.author===""){
 if (upload.body===""){
   emptyFields.push("body")
 }
-if (upload.comments===""){
-  emptyFields.push("comments")
+if (upload.description===""){
+  emptyFields.push("description")
 }
 if (upload.image===""){
   emptyFields.push("image")
@@ -146,7 +146,7 @@ if(response.ok){
     title:"",
     body:"",
     author:"",
-    comments:"",
+    description:"",
     image:"",
     category:"",
     tags:[]
@@ -211,7 +211,7 @@ copy icon */}
                  */}
                     <Input className={emptyFields.includes("author") ? "error":""} value={upload.author} type="text" placeholder="Author" onChange={(e)=>setUpload(prev=>({...prev,author:e.target.value}))}/>
 
-                    <TextArea className={emptyFields.includes("comments") ? "error":""} value={upload.comments} placeholder="Comments" onChange={(e)=>setUpload(prev=>({...prev,comments:e.target.value}))}></TextArea>
+                    <TextArea className={emptyFields.includes("description") ? "error":""} value={upload.description} placeholder="Description" onChange={(e)=>setUpload(prev=>({...prev,description:e.target.value}))}></TextArea>
                    
 
                     <Input className={emptyFields.includes("image") ? "error":""} type="file" ref={imageRef} onChange={(e)=>handleImageUpload(e)} />
@@ -223,7 +223,6 @@ copy icon */}
                     <Input className={emptyFields.includes("tags")? "error":""} value={upload.tags} type="text" placeholder="Tags" onChange={(e)=>{
                   const tags=e.target.value.split(",")
                   setUpload(prev=>({...prev,tags}))
-                      // setUpload(prev=>({...prev,tags:e.target.value.split(",")}))
                       }}/>
                    
                     <Button onClick={handleAddBlog}>Add Blog</Button>

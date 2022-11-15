@@ -5,17 +5,22 @@ import Home from "./Pages.js/Home";
 import Register from "./Pages.js/Register"
 import Login from "./Pages.js/Login";
 import AddBlog from "./Components.js/AddBlog";
+import SinglePost from "./Pages.js/SinglePost";
+import States from "./Context/States";
 
 function App() {
   return (
-    <BrowserRouter>
+    <States>
+      <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path="/Register" element={<Register/>}></Route>
       <Route path="/Login" element={<Login/>}></Route>
       <Route path="/AddBlog" element={<AddBlog/>}></Route>
-    </Routes>
+      <Route path= "/singlepost/:id" element={<SinglePost/>}></Route>
+          </Routes>
     </BrowserRouter>
+    </States>
 
   )
 }

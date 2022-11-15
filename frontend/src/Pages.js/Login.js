@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import Nav from "../Components.js/Nav"
 import Footer from "../Components.js/Footer"
+import { useState } from "react"
 const LoginContainer=styled.div`
 background:#F9F9F9;
 `
@@ -34,19 +35,44 @@ width:80%;
 margin:0 auto;
 margin-top:2em;
 cursor:pointer;`
+const Para=styled.p`
+color:red;`
 
 const Login=()=>{
+    const [error,setError]=useState(null)
+    const [emptyLogin, setEmptyLogin]=useState([])
+    const [signin, setSignin]=useState({
+        userName:"",
+        email:"",
+        password:""
+    })
+const handleLogin=()=>{
+ if (signin.userName==="" || signin.email==="" || signin.password===""){
+    setError("Please fill out the required fields")
+ }
+ if (signin.userName===""){
+emptyLogin.push("userName")
+ }
+ if (signin.email===""){
+    emptyLogin.push("email")
+ }
+ if (signin.password===""){
+    emptyLogin.push("password")
+ }
+}
     return(
         <>
         
         <LoginContainer>
         <Nav/>
             <Container>
+
+                { error && <Para>{error}</Para>}
                 <LoginInfo>
-                    <Input type="text" placeholder="UserName"/>
-                    <Input type="email address" placeholder="Email Address"/>
-                    <Input type="password" placeholder="Password"/>
-                    <Button>Login</Button>
+                    <Input className={emptyLogin.includes("userName")? "errors":""} value={signin.userName} type="text" placeholder="UserName"  onChange={(e)=>setSignin(prev=>({...prev,userName:e.target.value}))}/>
+                    <Input className={emptyLogin.includes("email") ? "errors":""} value={signin.email} type="email address" placeholder="Email Address" onChange={(e)=>setSignin(prev=>({...prev,email:e.target.value}))} />
+                    <Input className={emptyLogin.includes("password") ? "errors":""}  value={signin.password} type="password" placeholder="Password" onChange={(e)=>setSignin(prev=>({...prev, password:e.target.value}))}/>
+                    <Button onClick={handleLogin} >Login</Button>
                 </LoginInfo>
             </Container>
             </LoginContainer>

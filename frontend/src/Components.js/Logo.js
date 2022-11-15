@@ -35,10 +35,10 @@ border:none;
 outline:none;
 width:100%;
 `
-const LogoUl=styled.div`
+const LogoUl=styled.ul`
 list-style-type:none;
 display:flex;
-gap:2em;
+gap:1em;
 align-items:center;
 padding:2em 0;
 `
@@ -48,19 +48,12 @@ padding:.8em 2em;
     cursor:pointer;
     background:#2DAAFC;
     border-radius:15px;
-  
 }
 `
-const SelectOption=styled.select`
-background:inherit
-outline:none;
-border:none;`
-
-
 
 const Logo=()=>{
     return(
-        <>
+    
     <LogoContainer>
         <Container>
             <LogoDiv>
@@ -77,14 +70,17 @@ const Logo=()=>{
                 <LogoLi>Technology</LogoLi>
                 <LogoLi>Sports</LogoLi>
                 <LogoLi>Entertainment</LogoLi>
-                <LogoLi>Social</LogoLi>
-                <LogoLi>Fitness</LogoLi>
+                <LogoLi>Politics</LogoLi>
                 <LogoLi>Fashion</LogoLi>
+                <LogoLi>Health</LogoLi>
+                <LogoLi>Business </LogoLi>
+                <LogoLi>Religion</LogoLi>
+                <LogoLi>World</LogoLi>
             </LogoUl>
 
         </Container>
     </LogoContainer>
-        </>
+        
     )
 }
 export default Logo
