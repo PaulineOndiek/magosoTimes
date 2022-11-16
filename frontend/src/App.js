@@ -17,7 +17,7 @@ function App() {
       <Route path="/Register" element={<Register/>}></Route>
       <Route path="/Login" element={<Login/>}></Route>
       <Route path="/AddBlog" element={<AddBlog/>}></Route>
-      <Route path= "/singlepost/:id" element={<SinglePost/>}></Route>
+      <Route path= "/SinglePost/:id" element={<SinglePost/>}></Route>
           </Routes>
     </BrowserRouter>
     </States>

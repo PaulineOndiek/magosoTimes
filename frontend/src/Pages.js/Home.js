@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import {Context} from "../Context/States"
 const HomeContainer = styled.div`
-  backround: #f9f9f9;
+backround: #f9f9f9;
 `
 
 const Home = () => {

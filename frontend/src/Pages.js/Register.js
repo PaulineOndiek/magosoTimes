@@ -62,7 +62,7 @@ border-radius:10px;`
 
 const Register=()=>{
     const [show,setShow]=useState("false")
-    const [password,setPassword]=useState("false")
+    // const [password,setPassword]=useState("false")
     const[emptyUser, setEmptyUser]=useState([])
     const [error,setError]=useState(null)
     const [user, setUser]=useState({
@@ -117,7 +117,11 @@ console.log("error")
                     {error && <Para style={{color:"red"}} >{error}</Para>}
                     <Input className={emptyUser.includes("userName") ? "errors" :""}  value={user.userName} type="text" placeholder="Your UserName" onChange={(e)=>setUser(prev=>({...prev,userName:e.target.value}))} />
                     <Input className={emptyUser.includes("email") ? "errors" : ""}  value={user.email} type="email address" placeholder="Your Email" onChange={(e)=>setUser(prev=>({...prev,email:e.target.value}))} />
+                    {
+
                     <Input className={emptyUser.includes("password") ? "errors" :""}  value={user.password} type="password" placeholder="Your Password" onChange={(e)=>setUser(prev=>({...prev,password:e.target.value}))}/>
+                
+                }
                     <Input  className={emptyUser.includes("reEnter") ? "errors":""} value={user.reEnter} type="pasword" placeholder="Re-enter your password" onChange={(e)=>setUser(prev=>({...prev, reEnter:e.target.value}))} />
  
                     <Button onClick={handleAddUser}>Create Account</Button>
