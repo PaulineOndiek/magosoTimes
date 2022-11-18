@@ -5,6 +5,7 @@ const router=express.Router()
 //add post 
 router.post("/new", addPost)
 
+
 //get all posts from the database
 router.get("/", getPosts)
 
@@ -12,6 +13,8 @@ router.get("/", getPosts)
 router.get("/:id", getPost) //full colon means using it as a parameter or params, get a single post
 router.delete("/:id", deletePost) //delete a post
 router.patch("/:id", editPost)  //update a post 
+
+
 
 
 module.exports=router

@@ -137,7 +137,7 @@ const response=await fetch("http://localhost:8001/api/posts/new", {
   method:"POST",
   headers:{"Content-Type":"application/json"},
   body:JSON.stringify(upload)
-
+  
 })
 const responseJson=await response.json()
 

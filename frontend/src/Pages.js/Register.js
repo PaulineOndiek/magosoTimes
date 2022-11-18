@@ -2,8 +2,8 @@ import styled from "styled-components"
 import Nav from "../Components.js/Nav"
 import Footer from "../Components.js/Footer"
 import img1 from "../Images/registeer.jpeg"
-// import VisibilityIcon from '@mui/icons-material/Visibility';
-// import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useState } from "react"
 const RegisterContainer=styled.div`
 background:#F9F9F9;`
@@ -31,7 +31,9 @@ justify-content:center;
 `
 
 const Input=styled.input`
-padding:1.5em;
+border:none;
+background:inherit;
+outline:none;padding:1em;
 width:80%;
 border:none;
 border-bottom:2px solid grey;
@@ -40,6 +42,7 @@ background:inherit;
 &:active{
     border-bottom:2px solid #7D41E1;
 }
+
 `
 const Button=styled.button`
 padding:1em 3em ;
@@ -58,11 +61,16 @@ const Image=styled.img`
 width:400px;
 height:540px;
 border-radius:10px;`
+const Div=styled.div`
+display:flex;
+background:none;
 
+
+`
 
 const Register=()=>{
     const [show,setShow]=useState("false")
-    // const [password,setPassword]=useState("false")
+    const [password,setPassword]=useState("false")
     const[emptyUser, setEmptyUser]=useState([])
     const [error,setError]=useState(null)
     const [user, setUser]=useState({
@@ -103,7 +111,9 @@ catch (error){
 console.log("error")
 }
 }
-
+const toggleButton=()=>{
+    setPassword(!password)
+}
     return(
         <>
         <Nav/>
@@ -115,15 +125,26 @@ console.log("error")
                 <RegisterInput>
                     <Para>Create Account</Para>
                     {error && <Para style={{color:"red"}} >{error}</Para>}
-                    <Input className={emptyUser.includes("userName") ? "errors" :""}  value={user.userName} type="text" placeholder="Your UserName" onChange={(e)=>setUser(prev=>({...prev,userName:e.target.value}))} />
-                    <Input className={emptyUser.includes("email") ? "errors" : ""}  value={user.email} type="email address" placeholder="Your Email" onChange={(e)=>setUser(prev=>({...prev,email:e.target.value}))} />
-                    {
 
-                    <Input className={emptyUser.includes("password") ? "errors" :""}  value={user.password} type="password" placeholder="Your Password" onChange={(e)=>setUser(prev=>({...prev,password:e.target.value}))}/>
+                   
+                    <Input className={emptyUser.includes("userName") ? "errors" :""}  value={user.userName} type="text" placeholder="Your UserName" onChange={(e)=>setUser(prev=>({...prev,userName:e.target.value}))} />
+                   
+
+                    
+                    <Input className={emptyUser.includes("email") ? "errors" : ""}  value={user.email} type="email address" placeholder="Your Email" onChange={(e)=>setUser(prev=>({...prev,email:e.target.value}))} />
                 
-                }
+
+                 
+                        {/* <Button>{toggleButton}</Button> */}
+                    <Input className={emptyUser.includes("password") ? "errors" :""}  value={user.password} type= {password ? "text":"password"}placeholder="Your Password" onChange={(e)=>setUser(prev=>({...prev,password:e.target.value}))}/>
+
+                    {/* <VisibilityIcon/> */}
+                    {/* <VisibilityOffIcon/> */}
+                   
+                
+                  
                     <Input  className={emptyUser.includes("reEnter") ? "errors":""} value={user.reEnter} type="pasword" placeholder="Re-enter your password" onChange={(e)=>setUser(prev=>({...prev, reEnter:e.target.value}))} />
- 
+                  
                     <Button onClick={handleAddUser}>Create Account</Button>
                 </RegisterInput>
                 

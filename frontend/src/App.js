@@ -1,8 +1,7 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom"
-
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import './App.css';
 import Home from "./Pages.js/Home";
-import Register from "./Pages.js/Register"
+import Register from "./Pages.js/Register";
 import Login from "./Pages.js/Login";
 import AddBlog from "./Components.js/AddBlog";
 import SinglePost from "./Pages.js/SinglePost";
