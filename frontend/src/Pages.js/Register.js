@@ -2,9 +2,10 @@ import styled from "styled-components"
 import Nav from "../Components.js/Nav"
 import Footer from "../Components.js/Footer"
 import img1 from "../Images/registeer.jpeg"
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+// import VisibilityIcon from '@mui/icons-material/Visibility';
+// import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useState } from "react"
+import { useEffect } from "react";
 const RegisterContainer=styled.div`
 background:#F9F9F9;`
 const Container=styled.div`
@@ -81,6 +82,18 @@ const Register=()=>{
 
     })
 
+    
+useEffect(()=>{
+ const fetchUsers=async()=>{
+    const getData= await fetch ("http://localhost:8001/api/users")
+    const response=await getData.json()
+    // const data=await 
+    
+ }
+
+},[])
+
+
 const handleAddUser=()=>{
 try{
   if (user.userName==="" || user.email===""|| user.reEnter==="" || user.password===""){
@@ -111,9 +124,12 @@ catch (error){
 console.log("error")
 }
 }
+
 const toggleButton=()=>{
     setPassword(!password)
 }
+
+
     return(
         <>
         <Nav/>

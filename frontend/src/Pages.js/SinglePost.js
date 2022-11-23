@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate} from "react-router-dom"
 import { Context } from "../Context/States"
 import Loader from "../Images/Loader.gif"
 import EditIcon from '@mui/icons-material/Edit';
@@ -58,7 +58,7 @@ getPosts()
 [])
 const { post }=useContext(Context)
 const [ news,setNews ]=post
-
+const navigate=useNavigate()
 const handleEdit=()=>{
     const update=async()=>{
 const editFetch=await fetch (`http://localhost:8001/api/posts/${id}`, {
@@ -88,7 +88,7 @@ const responseJson=await editFetch.json()
          <Buttons>
         <EditButton>
         <EditIcon/>
-        <Button>Edit</Button>
+        <Button onClick={()=>navigate(`/edit/${onePost._id}`)}>Edit </Button>
         </EditButton>
 
         <EditButton>

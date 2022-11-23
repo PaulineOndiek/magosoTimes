@@ -95,7 +95,7 @@ const CLOUDINARY_UPLOAD_PRESET = 'qbxjeslj';
 
     .catch(err => console.error(err));
     
-// });
+
 }
 
 const log = () => {
@@ -177,7 +177,7 @@ catch(err){
 {/* <Input className={emptyFields.includes("title") ? "error":""} value={upload.body} onChange={(e)=>setUpload(prev=>({...prev,body:e.target.value}))}/> */}
     
     {/* onEditorChange in tinymce */}
-  <Editor  className={emptyFields.includes("body") ? "error": ""}onEditorChange={()=>setUpload(prev=>({...prev,body:editorRef.current.getContent()}))}
+  <Editor  className={emptyFields.includes("body") ? "error": ""} onEditorChange={()=>setUpload(prev=>({...prev,body:editorRef.current.getContent()}))}
    ref={editorRef}
         apiKey='9cxz2iq08r8pqej8hzbsv9xyxv6nncuiydau2npkqwo26tbd'
         onInit={(evt, editor) => editorRef.current = editor}

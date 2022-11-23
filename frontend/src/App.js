@@ -6,6 +6,7 @@ import Login from "./Pages.js/Login";
 import AddBlog from "./Components.js/AddBlog";
 import SinglePost from "./Pages.js/SinglePost";
 import States from "./Context/States";
+import Edit from "./Pages.js/Edit"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/Login" element={<Login/>}></Route>
       <Route path="/AddBlog" element={<AddBlog/>}></Route>
       <Route path= "/SinglePost/:id" element={<SinglePost/>}></Route>
+      <Route path="/edit/:id" element={<Edit/>}></Route>
           </Routes>
     </BrowserRouter>
     </States>

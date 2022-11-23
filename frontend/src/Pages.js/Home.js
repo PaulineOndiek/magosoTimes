@@ -35,7 +35,6 @@ useEffect(()=>{
     // .catch(err=>console.log(err))
   }, []);
 
-
   return (
    
     <HomeContainer>
@@ -52,4 +51,5 @@ useEffect(()=>{
   );
 
 };
+
 export default Home;

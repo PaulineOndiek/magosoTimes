@@ -1,7 +1,8 @@
 const { default: mongoose } = require("mongoose")
-const bcrypt=require("bcrypt")
+
+const validator=require("validator")
 const Post=require("../models/post") //importing postSchema from models
-const Users=require("../models/user") 
+
 
 
 const addPost= async(req,res)=>{
@@ -18,7 +19,7 @@ const addPost= async(req,res)=>{
          tags:req.body.tags
      }
      )
-
+    
      await newPost.save()  
      return res.status(201).json(newPost)
      //save is asynchronous so we use async and await
@@ -94,38 +95,7 @@ const editPost=async(req,res)=>{
 }
 
 
-const registerUser=async(req,res)=>{
-    try{ 
-        const {userName, email, password}=req.body
-const salt= await bcrypt.genSalt(10)
-const hash=await bcrypt.hash(password, salt)
-const newMember=new Users({
-   userName,
-   email,
-   password:hash
-   
-})
-
- const savedMember=await newMember.save()
- return res.status(201).json(savedMember)
-
-    }
-    catch(error){
-    res.json(error)
-    }
-}
-
-const loginUser=()=>{
-    try{
 
 
 
-    }
-
-    catch(error){
-    res.json(error)
-    }
-}
-
-
-module.exports={addPost,getPosts,getPost,deletePost,editPost, registerUser, loginUser}
+module.exports={addPost,getPosts,getPost,deletePost,editPost}

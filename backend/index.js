@@ -1,9 +1,9 @@
 const dotenv=require("dotenv")
-const express=require("express")
+const express=require("express") //express is a server
 const cors=require("cors")
 const mongoose=require("mongoose")
 const postRoutes=require("./routes/post")
-const postUsers=require("./routes/users")
+const usersRoutes=require("./routes/users")
 const post=require("./models/post")
 const user =require("./models/user")
 dotenv.config()
@@ -27,6 +27,6 @@ app.get("/",(req,res)=>{
 
 app.use(express.json())
 app.use("/api/posts", postRoutes)
-app.use("/api/users", postUsers)
+app.use("/api/users", usersRoutes)
 
 
