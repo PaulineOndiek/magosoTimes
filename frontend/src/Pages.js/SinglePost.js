@@ -50,6 +50,7 @@ useEffect(()=>{
 setOnePost(data)
 setLoading(false)
 }
+
 console.log(id)
 getPosts()
 
@@ -61,6 +62,7 @@ const [ news,setNews ]=post
 const navigate=useNavigate()
 const handleEdit=()=>{
     const update=async()=>{
+        
 const editFetch=await fetch (`http://localhost:8001/api/posts/${id}`, {
     method:"PATCH",
   headers:{"Content-Type":"application/json"},
@@ -68,6 +70,21 @@ const editFetch=await fetch (`http://localhost:8001/api/posts/${id}`, {
   
 })
 const responseJson=await editFetch.json()
+    }
+}
+
+const handleDelete=async()=>{
+    if (window.confirm("Do you want to delete the selected post?")) {
+        const response = await fetch(`http://localhost:8001/api/posts/${id}`, {
+            method: "DELETE",
+            headers:{"content-Type":"application/json"}
+        })
+        const resjson = await response.json()
+        if (response.ok) {
+          navigate("/")
+        }
+    } else {
+        return
     }
 }
 
@@ -88,12 +105,12 @@ const responseJson=await editFetch.json()
          <Buttons>
         <EditButton>
         <EditIcon/>
-        <Button onClick={()=>navigate(`/edit/${onePost._id}`)}>Edit </Button>
+        <Button onClick={()=>navigate(`/edit/${onePost._id}`)}>Edit</Button>
         </EditButton>
 
         <EditButton>
             <DeleteIcon/>
-        <Button onClick={handleEdit}>Delete</Button>
+        <Button onClick={handleDelete}>Delete</Button>
         </EditButton>
         </Buttons>
         </SingleContainer>

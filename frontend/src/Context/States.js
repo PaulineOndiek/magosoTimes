@@ -4,7 +4,7 @@ export const Context=createContext()
 
 const States=({children})=>{
    const [news,setNews]=useState(null)
-
+ 
     return(
         <Context.Provider value={{post:[news,setNews]}}>
         {children}
@@ -13,3 +13,4 @@ const States=({children})=>{
 }
 
 export default States
+

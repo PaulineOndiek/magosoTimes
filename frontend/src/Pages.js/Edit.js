@@ -10,28 +10,34 @@ import { useRef } from 'react';
 
 const EditContainer=styled.div`
 margin:0 auto;
-width:80%;`
+width:80%;
+`
 
 const Input=styled.input`
-display:flex;`
-const Button=styled.button``
+display:flex;
+outline:none;
+border:none;
+border:1px solid #2DAAFC;
+width:70%;
+padding:1.5em;
+border-radius:5px;
+margin-bottom:2em;`
+
+const Button=styled.button`
+padding:1em 3em ;
+background:#7D41E1;
+border-radius:5px;
+border:none;
+color:white;
+cursor:pointer;
+margin-right:1.5em;
+`
 const Img=styled.img``
 
 
 
 const Edit=()=>{
 
-  const [upload, setUpload]=useState({
-    title:"",
-    body:"",
-    author:"",
-    description:"",
-    image:"",
-    category:"",
-    tags:""
-  })
-
-  
     const [item, setItem]=useState(null)
     const [loading, setLoading]=useState(true)
     const editorRef=useRef(null)
@@ -43,10 +49,12 @@ const Edit=()=>{
         const data = await response.json()
             setItem(data)
             setLoading(false)
+
         }
 
         fetchBlog()
     },[])
+
     
       useEffect(()=>{
        setUpdateBlog({...item})
@@ -151,6 +159,7 @@ const Edit=()=>{
         </>
     )
 }
+
 
 export default Edit
 
